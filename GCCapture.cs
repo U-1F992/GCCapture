@@ -4,7 +4,7 @@ using OpenCvSharp;
 public class GCCapture : IDisposable
 {
     private VideoCapture _videoCapture;
-    private bool _showImage;
+    private bool _visible;
     private Thread _threadUpdateFrame;
     private bool _updating = true;
     private Mat _frame = new Mat();
@@ -13,9 +13,9 @@ public class GCCapture : IDisposable
     private bool _disposed = false;
 
     public GCCapture(int index, System.Drawing.Size size) : this(index, size, true) {}
-    public GCCapture(int index, System.Drawing.Size size, bool showImage)
+    public GCCapture(int index, System.Drawing.Size size, bool visible)
     {
-        this._showImage = showImage; 
+        this._visible = visible; 
 
         try
         {
@@ -71,7 +71,7 @@ public class GCCapture : IDisposable
     private void UpdateFrame()
     {
         Mat resized = new Mat();
-        Window? window = _showImage ? new Window(_windowName) : null;
+        Window? window = _visible ? new Window(_windowName) : null;
 
         while (_updating)
         {

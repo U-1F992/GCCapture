@@ -79,7 +79,8 @@ public class GCCapture : IDisposable
             {
                 if (!_videoCapture.Read(_frame))
                 {
-                    throw new Exception("Cannot grab frame from the VideoCapture specified.");
+                    continue;
+                    // throw new Exception("Cannot grab frame from the VideoCapture specified.");
                 }
                 if (window != null)
                 {

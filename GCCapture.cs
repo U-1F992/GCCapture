@@ -8,6 +8,7 @@ public class GCCapture : IDisposable
     private Thread _threadUpdateFrame;
     private bool _updating = true;
     private Mat _frame = new Mat();
+    protected string _windowName = "GCCapture";
     
     private bool _disposed = false;
 
@@ -70,7 +71,7 @@ public class GCCapture : IDisposable
     private void UpdateFrame()
     {
         Mat resized = new Mat();
-        Window? window = _showImage ? new Window("GCCapture") : null;
+        Window? window = _showImage ? new Window(_windowName) : null;
 
         while (_updating)
         {
